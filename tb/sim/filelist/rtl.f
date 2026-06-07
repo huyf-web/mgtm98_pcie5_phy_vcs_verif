@@ -4,12 +4,14 @@
 ../../rtl/DataHandling.v
 ../../rtl/Descrambler.v
 ../../rtl/FIFOV2.v
+../../rtl/FIFO.v
 ../../rtl/Gen_3_check_byte.v
 ../../rtl/Gen_ctrl.v
 ../../rtl/Gen_mux.v
 ../../rtl/Gen1_2_DataPath.v
 ../../rtl/Gen3_DataPath.v
 ../../rtl/Insert_token_block.v
+../../rtl/InsertBlockToken_G3.v
 ../../rtl/Lane_Management_Control.v
 ../../rtl/LENGTH_COUNTER.v
 ../../rtl/LFSR_16.v
