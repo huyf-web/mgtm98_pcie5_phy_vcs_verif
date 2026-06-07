@@ -1,6 +1,4 @@
 class reporter extends uvm_report_server;
-	uvm_report_global_server global_server;
-
 	extern function new(string name = "report_server");
 	extern function string compose_message(
 		uvm_severity severity,
@@ -16,8 +14,6 @@ endclass : reporter
 function reporter::new(string name = "report_server");
 	super.new();
 	set_name(name);
-	global_server = new();
-	global_server.set_server(this);
 endfunction : new		
 
 function string reporter::compose_message(uvm_severity severity,
