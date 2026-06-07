@@ -1,10 +1,10 @@
-# mgtm98 PCIe5 PHY VCS Verification Environment
+# mgtm98 PCIe5 PHY VCS 验证环境
 
-This repository contains the PCIe5 PHY RTL from `mgtm98/pcie5_phy` plus a VCS/Verdi/DVE oriented UVM verification flow.
+本仓库基于 `mgtm98/pcie5_phy` 项目整理，包含 PCIe5 PHY RTL、原有 UVM 验证环境，以及面向 VCS/Verdi/DVE 的仿真入口。
 
-## Run
+## 运行方式
 
-From the repository root:
+在仓库根目录执行：
 
 ```sh
 make com
@@ -14,19 +14,19 @@ make regress
 make cov
 ```
 
-The same commands can be run from `tb/sim`.
+也可以进入 `tb/sim` 后执行同样的命令。
 
-## Output
+## 输出目录
 
-Simulation output is generated under `tb/sim/output/`:
+仿真输出统一放在 `tb/sim/output/`：
 
-- `log/`: compile, run, and coverage logs
-- `wave/`: FSDB files
-- `simv/`: VCS executable and compile database
-- `cov/`: VCS coverage databases and merged coverage
-- `meta/`: copied filelists and run metadata
+- `log/`：编译、仿真和覆盖率日志
+- `wave/`：FSDB 波形文件
+- `simv/`：VCS 可执行文件和编译数据库
+- `cov/`：VCS 覆盖率数据库和合并后的覆盖率结果
+- `meta/`：编译 filelist 备份和运行元信息
 
-## Documents
+## 项目文档
 
 - `docs/rtl_architecture.md`
 - `docs/rtl_function_description.md`

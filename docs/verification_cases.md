@@ -1,22 +1,22 @@
-# Verification Case Document
+# 验证用例文档
 
-## Test Class
+## 测试类
 
-`pcie_test` is the single UVM test class. It configures LPIF and PIPE agents, creates `pcie_env`, and runs virtual sequences selected by the `+VSEQ` plusarg.
+`pcie_test` 是当前环境中的唯一 UVM test class。它配置 LPIF 和 PIPE agent，创建 `pcie_env`，并运行由 `+VSEQ` plusarg 指定的 virtual sequence。
 
-## Virtual Sequences
+## Virtual Sequence
 
-- `reset_vseq`: drives LPIF reset sequence.
-- `link_up_vseq`: runs LPIF and PIPE link-up sequences in parallel.
-- `enter_recovery_vseq`: drives LPIF/PIPE recovery entry behavior.
-- `data_exchange_vseq`: drives LPIF transmit traffic and matching PIPE traffic sequence.
-- `speed_change_dsp_vseq`: downstream-port speed change without equalization.
-- `speed_change_usp_vseq`: upstream-port speed change without equalization.
-- `dummy_vseq`: placeholder virtual sequence for connectivity/debug.
+- `reset_vseq`：驱动 LPIF reset sequence。
+- `link_up_vseq`：并行运行 LPIF 和 PIPE link-up sequence。
+- `enter_recovery_vseq`：驱动 LPIF/PIPE 进入 recovery 的行为。
+- `data_exchange_vseq`：驱动 LPIF 发送数据，并配合 PIPE 侧数据传输 sequence。
+- `speed_change_dsp_vseq`：downstream port 不带均衡的 speed change sequence。
+- `speed_change_usp_vseq`：upstream port 不带均衡的 speed change sequence。
+- `dummy_vseq`：用于连通性和调试的占位 virtual sequence。
 
-## Regression List
+## 回归列表
 
-The initial regression file is `tb/sim/filelist/regress.list`:
+初版回归列表位于 `tb/sim/filelist/regress.list`：
 
 | Case | Seed | VSEQ |
 | --- | ---: | --- |
@@ -26,7 +26,7 @@ The initial regression file is `tb/sim/filelist/regress.list`:
 | `pcie_test` | 4 | `reset_vseq,link_up_vseq,speed_change_dsp_vseq` |
 | `pcie_test` | 5 | `reset_vseq,link_up_vseq,speed_change_usp_vseq` |
 
-## Example Commands
+## 命令示例
 
 ```sh
 make com
@@ -37,6 +37,6 @@ make verdi tc=pcie_test seed=123
 make cov
 ```
 
-## Current Coverage/Checking Status
+## 当前覆盖率与检查状态
 
-The environment contains coverage monitor classes and a scoreboard skeleton. The current first version focuses on compiling and executing existing LPIF/PIPE stimulus through the VCS flow. Scoreboard comparison rules and coverage goals should be expanded after detailed protocol requirements are finalized.
+环境中已经包含 coverage monitor class 和 scoreboard 框架。当前初版重点是把已有 LPIF/PIPE stimulus 接入 VCS 流程并能够编译运行；scoreboard 比对规则和覆盖率目标需要在详细协议检查需求确定后继续扩展。
