@@ -2,3 +2,4 @@ tb/sim/work/
 work/
 .vscode/
 *.pdf
+.codex_tmp/

@@ -34,7 +34,7 @@ generate
                 .valid(valid[i]),
                 .DK(DK[i]),
                 
-                .type({valid_d[i],tlpstart[i],tlpend[i],dlpend[i],dlpstart[i],tlpedb[i]}),
+                .check_type({valid_d[i],tlpstart[i],tlpend[i],dlpend[i],dlpstart[i],tlpedb[i]}),
                 .tlp_or_dllp_out({tlp_or_dllp1[0],tlp_or_dllp2[0]})
 
             );  
@@ -46,7 +46,7 @@ generate
                 .valid(valid[i]),
                 .DK(DK[i]),
                
-                .type({valid_d[i],tlpstart[i],tlpend[i],dlpend[i],dlpstart[i],tlpedb[i]}),
+                .check_type({valid_d[i],tlpstart[i],tlpend[i],dlpend[i],dlpstart[i],tlpedb[i]}),
                 .tlp_or_dllp_out(tlp_or_dllp_reg_in)
             );  
           end
@@ -58,7 +58,7 @@ generate
                 .valid(valid[i]),
                 .DK(DK[i]),
               
-                .type({valid_d[i],tlpstart[i],tlpend[i],dlpend[i],dlpstart[i],tlpedb[i]}),
+                .check_type({valid_d[i],tlpstart[i],tlpend[i],dlpend[i],dlpstart[i],tlpedb[i]}),
                 .tlp_or_dllp_out({tlp_or_dllp1[i],tlp_or_dllp2[i]})
             );      
           end  

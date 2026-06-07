@@ -63,7 +63,7 @@ generate
               .byte_count_out(count_byte[i]),
               .byte_header_out(header_byte[i]),
               .count_limit_out(count_limit[i]),
-              .type({valid_d[i],tlpstart[i],tlpend[i],dlpend[i],dlpstart[i],tlpedb[i]}),
+              .check_type({valid_d[i],tlpstart[i],tlpend[i],dlpend[i],dlpstart[i],tlpedb[i]}),
               .rst(rst)
           );  
         end
@@ -78,7 +78,7 @@ generate
               .byte_count_out(count_byte[i]),
               .byte_header_out(header_byte[i]),
               .count_limit_out(count_limit[i]),
-              .type({valid_d[i],tlpstart[i],tlpend[i],dlpend[i],dlpstart[i],tlpedb[i]}),
+              .check_type({valid_d[i],tlpstart[i],tlpend[i],dlpend[i],dlpstart[i],tlpedb[i]}),
               .rst(rst)  
             );  
         end
@@ -94,7 +94,7 @@ generate
             .byte_count_out(count_byte[i]),
             .byte_header_out(header_byte[i]),
             .count_limit_out(count_limit[i]),
-            .type({valid_d[i],tlpstart[i],tlpend[i],dlpend[i],dlpstart[i],tlpedb[i]}),
+            .check_type({valid_d[i],tlpstart[i],tlpend[i],dlpend[i],dlpstart[i],tlpedb[i]}),
             .rst(rst)  
           );    
         end  

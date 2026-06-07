@@ -7,7 +7,7 @@ module Gen_3_check_byte(
     input   [11:0]count_limit_in,
     input   [1:0]syncHeader,
     input rst,
-    output   [5:0]type,
+    output   [5:0]check_type,
     output   [11:0]byte_count_out,
     output   [2:0]byte_header_out,
     output   [11:0]count_limit_out
@@ -154,6 +154,6 @@ end
 assign byte_count_out = byte_count_in_reg;
 assign byte_header_out = byte_header_in_reg;
 assign count_limit_out = count_limit_in_reg;
-assign type = type_reg;
+assign check_type = type_reg;
 
 endmodule

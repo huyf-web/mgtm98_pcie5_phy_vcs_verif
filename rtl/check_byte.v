@@ -4,7 +4,7 @@ module check_byte(
     input   valid,
     input   DK,
 
-    output  [5:0]type,
+    output  [5:0]check_type,
     output  [1:0]tlp_or_dllp_out
 );
 // data boundries
@@ -82,8 +82,7 @@ module check_byte(
         end
     end
 
-assign type = type_reg;
+assign check_type = type_reg;
 assign tlp_or_dllp_out = tlp_or_dllp_out_reg;
 
 endmodule
-
