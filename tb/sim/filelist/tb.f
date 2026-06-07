@@ -1,0 +1,15 @@
+../common_pkg.sv
+../utility/utility_pkg.sv
+../agents/pipe_agent/pipe_if.sv
+../agents/lpif_agent/lpif_if.sv
+../agents/pipe_agent/pipe_agent_pkg.sv
+../agents/lpif_agent/lpif_agent_pkg.sv
+../agents/pipe_agent/pipe_driver_bfm.sv
+../agents/pipe_agent/pipe_monitor_bfm.sv
+../agents/lpif_agent/lpif_driver_bfm.sv
+../agents/lpif_agent/lpif_monitor_bfm.sv
+../env/pcie_env_pkg.sv
+../sequences/pcie_seq_pkg.sv
+../test/pcie_test_pkg.sv
+../top/hdl_top.sv
+../top/hvl_top.sv

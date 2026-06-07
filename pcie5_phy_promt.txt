@@ -1,0 +1,20 @@
+项目源：在下述的github里面是项目的核心代码，里面包含了IC设计的RTL以及一套简单的验证环境
+https://github.com/mgtm98/pcie5_phy
+
+用户指定的环境：
+整套环境通过vcs进行编译，通过verdi进行仿真，通过dve查看覆盖率。波形是fsdb格式
+用户的指令通过小写的makefile输入，用户需要的指令有
+make com：编译环境
+make run tc=xxx_test seed=123：运行vcs仿真，跑的case是xxx_test，仿真的时候种子是123
+make verdi：打开verdi
+make cov：打开合并好的覆盖率文件
+make regress：将所有的case回归一遍
+
+用户指定的github仓库：
+在项目开发的时候，将要上传的github仓库是https://github.com/huyf-web/mgtm98_pcie5_phy_vcs_verif
+
+目标：
+1. 在项目源，先阅读这份RTL，整理出一份清晰的架构文档，整理出一份功能描述文档，里面有简单的关于每份rtl的功能描述
+2. 在项目源，先阅读这份tb环境，整理出一份清晰的架构文档，整理出验证case文档
+3. 在项目源，将tb环境整理成用户指定的环境版本
+4. 完成这些操作以后将环境上传到用户指定的github仓库https://github.com/huyf-web/mgtm98_pcie5_phy_vcs_verif，版本是初版

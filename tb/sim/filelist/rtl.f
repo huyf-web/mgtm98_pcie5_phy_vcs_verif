@@ -1,0 +1,45 @@
+../../rtl/check_byte.v
+../../rtl/comparator.v
+../../rtl/Counter.v
+../../rtl/DataHandling.v
+../../rtl/Descrambler.v
+../../rtl/FIFOV2.v
+../../rtl/Gen_3_check_byte.v
+../../rtl/Gen_ctrl.v
+../../rtl/Gen_mux.v
+../../rtl/Gen1_2_DataPath.v
+../../rtl/Gen3_DataPath.v
+../../rtl/Insert_token_block.v
+../../rtl/Lane_Management_Control.v
+../../rtl/LENGTH_COUNTER.v
+../../rtl/LFSR_16.v
+../../rtl/LFSR_16_gen3.v
+../../rtl/LFSR_32.v
+../../rtl/LFSR_32_gen3.v
+../../rtl/LFSR_8.v
+../../rtl/LFSR_8_gen3.v
+../../rtl/LMC.v
+"../../rtl/LPIF RX Control & Data Flow.v"
+../../rtl/maintlssm.v
+../../rtl/Master.v
+../../rtl/Master_RX_LTSSM.v
+../../rtl/Master_Tx.v
+../../rtl/MasterTX.v
+"../../rtl/Modules Integration.v"
+../../rtl/MUX.v
+../../rtl/OS_Checker.v
+../../rtl/OS_GENERATOR.v
+../../rtl/osDecoder.v
+../../rtl/packet_identifier.v
+../../rtl/PCIE.v
+../../rtl/PIPE_Control.v
+../../rtl/PIPE_Data.v
+../../rtl/PIPE_Rx_Data.v
+../../rtl/RxLTSSM.v
+../../rtl/Scrambler.v
+../../rtl/Timer.v
+"../../rtl/TX .v"
+../../rtl/TX_Control.v
+../../rtl/Tx_CTRL.v
+../../rtl/TxLtssm.v
+../../rtl/UnStriping.v
