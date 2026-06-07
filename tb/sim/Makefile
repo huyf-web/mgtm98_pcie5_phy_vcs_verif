@@ -6,6 +6,7 @@ verbosity ?= UVM_MEDIUM
 waves     ?= 1
 vseq      ?= reset_vseq,link_up_vseq
 sim_timeout ?= 200000
+merge_cov ?= 0
 
 VCS       ?= /home/synopsys/vcs-mx/O-2018.09-1/bin/vcs
 VERDI     ?= /home/synopsys/verdi/Verdi_O-2018.09-SP2/bin/verdi
@@ -71,7 +72,7 @@ help:
 	@echo "  make clean                       Remove sim output"
 	@echo ""
 	@echo "Variables:"
-	@echo "  tc=$(tc) seed=$(seed) waves=$(waves) verbosity=$(verbosity) sim_timeout=$(sim_timeout)"
+	@echo "  tc=$(tc) seed=$(seed) waves=$(waves) verbosity=$(verbosity) sim_timeout=$(sim_timeout) merge_cov=$(merge_cov)"
 	@echo "  vseq=$(vseq)"
 
 dirs:
@@ -99,24 +100,31 @@ cov:
 	$(DVE) -covdir $(COV_DIR)/merged.vdb &
 
 regress: com
+	@rm -f $(META_DIR)/regress_cov_dirs.txt
 	@set -e; \
 	while read line; do \
 	  [[ -z "$$line" || "$$line" =~ ^# ]] && continue; \
 	  set -- $$line; \
 	  test_name=$$1; test_seed=$${2:-$(seed)}; test_vseq=$${3:-$(vseq)}; \
+	  cov_db=$(COV_DIR)/$${test_name}_$${test_seed}.vdb; \
 	  echo "Running $$test_name seed=$$test_seed vseq=$$test_vseq"; \
 	  $(SIMV) +UVM_NO_RELNOTES +UVM_TESTNAME=$$test_name +UVM_VERBOSITY=$(verbosity) \
 	    +ntb_random_seed=$$test_seed +VSEQ=$$test_vseq +WAVES=$(waves) \
 	    +FSDB_FILE=$(WAVE_DIR)/$${test_name}_$${test_seed}.fsdb \
 	    +SIM_TIMEOUT_NS=$(sim_timeout) \
-	    -cm line+cond+tgl+fsm+branch -cm_dir $(COV_DIR)/$${test_name}_$${test_seed}.vdb \
+	    -cm line+cond+tgl+fsm+branch -cm_dir $$cov_db \
 	    -l $(LOG_DIR)/run_$${test_name}_$${test_seed}.log; \
 	  if grep -Eq 'UVM_(ERROR|FATAL)[[:space:]]*:[[:space:]]*[1-9]' $(LOG_DIR)/run_$${test_name}_$${test_seed}.log; then \
 	    echo "UVM errors or fatals found in $(LOG_DIR)/run_$${test_name}_$${test_seed}.log"; \
 	    exit 1; \
 	  fi; \
+	  echo "$$cov_db" >> $(META_DIR)/regress_cov_dirs.txt; \
 	done < $(CASE_LIST)
-	@urg -full64 -dir $(COV_DIR)/*.vdb -dbname $(COV_DIR)/merged.vdb -report $(COV_DIR)/urg_report -log $(LOG_DIR)/urg.log
+	@if [ "$(merge_cov)" = "1" ]; then \
+	  urg -full64 -dir $$(cat $(META_DIR)/regress_cov_dirs.txt) -dbname $(COV_DIR)/merged.vdb -report $(COV_DIR)/urg_report -log $(LOG_DIR)/urg.log; \
+	else \
+	  echo "Coverage merge skipped. Use make regress merge_cov=1 to run URG."; \
+	fi
 
 list:
 	@echo "Tests:"

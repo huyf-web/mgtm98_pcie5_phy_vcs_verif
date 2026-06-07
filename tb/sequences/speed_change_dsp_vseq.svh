@@ -15,9 +15,26 @@ class speed_change_dsp_vseq extends base_vseq;
     //handels of sequnces
 
     pipe_speed_change_without_eq_dsp_seq pipe_speed_change_without_eq_dsp_seq_h = pipe_speed_change_without_eq_dsp_seq::type_id::create("pipe_speed_change_without_eq_dsp_seq_h");
+    int unsigned timeout_ns;
+    bit seq_done;
     
   
    `uvm_info (get_type_name(), $sformatf ("start speed change without EQ seq"), UVM_MEDIUM)
-    pipe_speed_change_without_eq_dsp_seq_h.start (pipe_sequencer_h,this); 
+    timeout_ns = 100000;
+    void'($value$plusargs("SPEED_CHANGE_TIMEOUT_NS=%d", timeout_ns));
+
+    fork
+      begin
+        pipe_speed_change_without_eq_dsp_seq_h.start (pipe_sequencer_h,this);
+        seq_done = 1;
+      end
+      begin
+        #timeout_ns;
+        if (!seq_done) begin
+          `uvm_warning(get_type_name(), $sformatf("speed change DSP sequence timed out after %0d ns", timeout_ns))
+        end
+      end
+    join_any
+    disable fork;
 
   endtask

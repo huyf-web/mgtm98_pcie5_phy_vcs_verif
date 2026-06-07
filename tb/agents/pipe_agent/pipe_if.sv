@@ -22,7 +22,7 @@ interface pipe_if
   logic [pipe_num_of_lanes-1:0]       RxValid;
   logic [3*pipe_num_of_lanes-1:0]     RxStatus;
   logic [pipe_num_of_lanes-1:0]       RxStandby;
-  logic                               RxElecIdle;
+  logic [pipe_num_of_lanes-1:0]       RxElecIdle;
   /*************************************************************************************/
   
   /*************************** TX Specific Signals *************************************/

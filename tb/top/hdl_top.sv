@@ -226,7 +226,7 @@ module hdl_top;
   . TxDetectRx_Loopback                   (PIPE.TxDetectRxLoopback),
   . RxData                                (PIPE.RxData),
   . RxDataValid                           (PIPE.RxDataValid),
-  . RxDataK                               (PIPE.RxDataValid),
+  . RxDataK                               (PIPE.RxDataK),
   . RxStartBlock                          (PIPE.RxStartBlock),
   . RxSyncHeader                          (PIPE.RxSyncHeader),
   //. RxStandby                             (PIPE.RxStandby), // missing the design now 
@@ -310,6 +310,27 @@ module hdl_top;
     if (sim_timeout_ns > 0) begin
       #(sim_timeout_ns);
       `uvm_fatal("SIM_TIMEOUT", $sformatf("Simulation timeout after %0d ns", sim_timeout_ns))
+    end
+  end
+
+  initial begin
+    int ltssm_debug;
+
+    ltssm_debug = 0;
+    void'($value$plusargs("LTSSM_DEBUG=%d", ltssm_debug));
+
+    if (ltssm_debug) begin
+      forever begin
+        @(LPIF.pl_linkup or LPIF.pl_state_sts or LPIF.lp_state_req or
+          DUT.mainltssm.currentState or DUT.mainltssm.substateTx or DUT.mainltssm.substateRx or
+          DUT.mainltssm.finishTx or DUT.mainltssm.finishRx or DUT.mainltssm.gotoTx or DUT.mainltssm.gotoRx);
+        `uvm_info("LTSSM_DEBUG",
+          $sformatf("lp_req=%0d pl_sts=%0d link=%0b state=%0d tx=%0d rx=%0d finishTx=%0b gotoTx=%0d finishRx=%0b gotoRx=%0d",
+            LPIF.lp_state_req, LPIF.pl_state_sts, LPIF.pl_linkup,
+            DUT.mainltssm.currentState, DUT.mainltssm.substateTx, DUT.mainltssm.substateRx,
+            DUT.mainltssm.finishTx, DUT.mainltssm.gotoTx, DUT.mainltssm.finishRx, DUT.mainltssm.gotoRx),
+          UVM_NONE)
+      end
     end
   end
 

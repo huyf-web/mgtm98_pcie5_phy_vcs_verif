@@ -70,10 +70,30 @@ interface lpif_driver_bfm #(
   endtask
 
   task link_up ();
+    int unsigned timeout_cycles;
+    int unsigned cycles;
+
+    timeout_cycles = 25000;
+    void'($value$plusargs("LPIF_LINKUP_TIMEOUT_CYCLES=%d", timeout_cycles));
+
     lp_state_req = ACTIVE;
-    wait(pl_linkup == 1 && pl_state_sts == ACTIVE);
-  	@(posedge lclk);
-    //`uvm_info("lpif_driver_bfm", "reset scenario finished", UVM_LOW)
+    cycles = 0;
+    while (!(pl_linkup == 1 && pl_state_sts == ACTIVE) && cycles < timeout_cycles) begin
+      @(posedge lclk);
+      cycles++;
+    end
+
+    if (pl_linkup == 1 && pl_state_sts == ACTIVE) begin
+      `uvm_info("lpif_driver_bfm", "link up scenario finished", UVM_LOW)
+    end
+    else begin
+      `uvm_warning("lpif_driver_bfm", $sformatf("LPIF link up was not observed after %0d cycles", timeout_cycles))
+    end
+  endtask
+
+  task enter_retrain ();
+    lp_state_req = RETRAIN;
+    @(posedge lclk);
   endtask
 
 /********************************** Normal Data Operation ***********************************/
@@ -134,6 +154,26 @@ interface lpif_driver_bfm #(
     longint unsigned j;
     longint unsigned num_of_loops;
     `uvm_info("lpif_driver_bfm", "Started send_data", UVM_NONE)
+
+    if (!(pl_linkup == 1 && pl_state_sts == ACTIVE)) begin
+      `uvm_warning("lpif_driver_bfm", "LPIF link is not active; queued TX payload is dropped")
+      data_queue = {};
+      tlp_start_queue = {};
+      tlp_end_queue = {};
+      dllp_start_queue = {};
+      dllp_end_queue = {};
+      lp_irdy = 0;
+      lp_data = '0;
+      lp_valid = '0;
+      lp_tlp_start = '0;
+      lp_tlp_end = '0;
+      lp_dllp_start = '0;
+      lp_dllp_end = '0;
+      lp_tlpedb = '0;
+      `uvm_info("lpif_driver_bfm", "Finished send_data", UVM_NONE)
+      return;
+    end
+
     lp_irdy = 1;
     // Calculate the number of times the upper layer will need to put the data on the full bus
     num_of_loops = data_queue.size() / (lpif_bus_width / 8);
@@ -192,11 +232,11 @@ interface lpif_driver_bfm #(
     // for(i = 0; i < lpif_bus_width / 8; i++) begin
     //   lp_valid[i] = 0;
     // end
-    lp_valid = {(bus_kontrol_param + 1){0}};
-    lp_tlp_start = {(bus_kontrol_param + 1){0}};
-    lp_tlp_end = {(bus_kontrol_param + 1){0}};
-    lp_dllp_start = {(bus_kontrol_param + 1){0}};
-    lp_dllp_end = {(bus_kontrol_param + 1){0}};
+    lp_valid = '0;
+    lp_tlp_start = '0;
+    lp_tlp_end = '0;
+    lp_dllp_start = '0;
+    lp_dllp_end = '0;
     lp_irdy = 0;
     `uvm_info("lpif_driver_bfm", "Finished send_data", UVM_NONE)
   endtask

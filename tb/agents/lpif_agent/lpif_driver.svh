@@ -32,6 +32,7 @@ class lpif_driver extends uvm_driver #(lpif_seq_item);
       case(lpif_seq_item_h.lpif_operation)
         LINK_UP: lpif_driver_bfm_h.link_up();
         LINK_RESET: lpif_driver_bfm_h.reset_scenario();
+        ENTER_RETRAIN: lpif_driver_bfm_h.enter_retrain();
         TLP_TRANSFER: lpif_driver_bfm_h.send_tlp(lpif_seq_item_h.tlp);
         DLLP_TRANSFER: lpif_driver_bfm_h.send_dllp(lpif_seq_item_h.dllp);
         SEND_DATA: lpif_driver_bfm_h.send_data();

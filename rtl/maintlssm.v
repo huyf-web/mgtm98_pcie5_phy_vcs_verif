@@ -162,7 +162,7 @@ parameter LANESNUMBER = 16)
        case (currentState)
         reset_:
         begin
-            if(finishTx&&gotoTx==L0&&finishRx&&gotoRx==L0&&lpifStateRequest==active_)
+            if(((finishTx&&gotoTx==L0&&finishRx&&gotoRx==L0) || ({substateTx,substateRx} == {L0,L0})) && lpifStateRequest==active_)
             begin
                 nextState <= active_;
             end
@@ -346,7 +346,7 @@ end
                             lpifStateStatus = reset_;
                         end
                 {configurationComplete,configurationComplete}:
-                    if (finishRx&&gotoRx==configurationIdle&&finishTx&&gotoRx==configurationIdle) 
+                    if (finishRx&&gotoRx==configurationIdle&&finishTx&&gotoTx==configurationIdle) 
                         begin
                             {substateTxnext,substateRxnext}= {configurationIdle,configurationIdle};
                             lpifStateStatus = reset_;
@@ -365,7 +365,7 @@ end
                             linkUp = 1'b1;
                             startSend16 <= 1'b0;
                             lpifStateStatus = reset_;
-                            {substateTx,substateRx} <= {L0,L0};//ERASE THE COMMENT IF I CAN GOT TO L0 WITHOUT LPIF PERMISSION
+                            {substateTxnext,substateRxnext} = {L0,L0};
                         end
                     else if((finishTx&&gotoTx==detectQuiet)||(finishRx&&gotoRx==detectQuiet))
                         begin

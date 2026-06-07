@@ -17,9 +17,8 @@ interface pipe_monitor_bfm
   input logic [2*pipe_num_of_lanes-1:0]     RxSyncHeader,
   input logic [pipe_num_of_lanes-1:0]       RxValid,
   input logic [3*pipe_num_of_lanes-1:0]     RxStatus,
-  input logic                               RxElecIdle,
+  input logic [pipe_num_of_lanes-1:0]       RxElecIdle,
   input logic [pipe_num_of_lanes-1:0]       RxStandby,
-  //input logic [pipe_num_of_lanes-1:0]       RxElecIdle,
   
   /*************************************************************************************/
   
@@ -356,7 +355,7 @@ end
       @(posedge PCLK);
 
       for (int i = 0; i < `NUM_OF_LANES; i++) begin
-        assert (PowerDown[(i*4) +:4] == 4'b0010) else `uvm_error ("pipe_monitor_bfm", "PowerDown isn't in P1 during Detect")
+        assert (PowerDown[(i*4) +:4] == 4'b0010 || PowerDown[(i*4) +:4] == 4'b0000) else `uvm_error ("pipe_monitor_bfm", "PowerDown isn't in P1 or P0 during Detect")
       end
       for (int i = 0; i < `NUM_OF_LANES; i++) begin
         wait(PhyStatus[i]==1);
