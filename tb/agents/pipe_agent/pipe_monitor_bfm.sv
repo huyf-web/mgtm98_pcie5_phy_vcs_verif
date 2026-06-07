@@ -1447,7 +1447,7 @@ endtask
         lanenum = $floor(i/(pipe_max_width/8.0));
         temp_value = TxData[(8*i) +: 8];
         ////`uvm_info("pipe_monitor_bfm", $sformatf("lanenum_tx= %d",lanenum), UVM_MEDIUM)
-        if (((i-(get_width/8)-1)%4) == 0) 
+        if (((i-(get_width()/8)-1)%4) == 0) 
           idle_descrambled[i] = descramble(monitor_tx_scrambler,temp_value,lanenum, current_gen);
         else
         idle_descrambled[i] = 8'b1111_1111;
@@ -1476,7 +1476,7 @@ endtask
         temp_value=TxData[(8*i) +: 8];
          data_descrambled[(8*j) +: 8] = descramble(monitor_tx_scrambler,temp_value,lanenum, current_gen);
        end
-       else if (TxDataK [i] == 1 && ((i-(get_width/8)-1)%4) == 0) begin
+       else if (TxDataK [i] == 1 && ((i-(get_width()/8)-1)%4) == 0) begin
         data_descrambled[(8*j) +: 8] = (TxData[(8*i) +: 8]);
        end
        dllp_done = 0;
@@ -1510,7 +1510,7 @@ endtask
     int j = i - start_tlp;
     if(!(TxDataK[i] == 1 && TxData[(8*i) +: 8] == `END_gen_1_2)) begin
       lanenum = $floor(i/(pipe_max_width/8.0));
-       if(TxDataK [i] == 0 && ((i-(get_width/8)-1)%4) == 0) begin
+       if(TxDataK [i] == 0 && ((i-(get_width()/8)-1)%4) == 0) begin
          temp_value = TxData[(8*i) +: 8];
          data_descrambled[(8*j) +: 8] = descramble(monitor_tx_scrambler, temp_value, lanenum, current_gen);
        end
@@ -1584,7 +1584,7 @@ if (RxDataValid[0] === 1) begin
        //`uvm_info("pipe_monitor_bfm", "momken idle_sent", UVM_MEDIUM)
        lanenum = $floor(i/(pipe_max_width/8.0));
        temp_value = RxData[(8*i) +: 8];
-       if (((i-(get_width/8)-1)%4) == 0) 
+       if (((i-(get_width()/8)-1)%4) == 0) 
          idle_descrambled[i] = descramble(monitor_rx_scrambler,temp_value,lanenum, current_gen);
        else
        idle_descrambled[i] = 8'b1111_1111;
@@ -1610,7 +1610,7 @@ endtask
     int j = i - start_dllp;
     if(!(RxDataK[i] == 1 && RxData[(8*i) +: 8] == `END_gen_1_2)) begin
       lanenum = $floor(i/(pipe_max_width/8.0));
-       if(RxDataK [i] == 0 && ((i-(get_width/8)-1)%4) == 0) begin
+       if(RxDataK [i] == 0 && ((i-(get_width()/8)-1)%4) == 0) begin
         temp_value = RxData[(8*i) +: 8];
         data_descrambled[(8*j) +: 8] = descramble(monitor_rx_scrambler, temp_value, lanenum, current_gen);
        end
@@ -1653,7 +1653,7 @@ endtask
     int j = i - start_tlp;
     if(!(RxDataK[i] == 1 && RxData[(8*i) +: 8] == `END_gen_1_2)) begin
       lanenum = $floor(i/(pipe_max_width/8.0));
-       if(RxDataK [i] == 0 && ((i-(get_width/8)-1)%4) == 0) begin
+       if(RxDataK [i] == 0 && ((i-(get_width()/8)-1)%4) == 0) begin
          temp_value = RxData[(8*i) +: 8];
          data_descrambled[(8*j) +: 8] = descramble(monitor_rx_scrambler, temp_value, lanenum, current_gen);
        end
