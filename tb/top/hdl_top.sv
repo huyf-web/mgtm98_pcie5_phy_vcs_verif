@@ -302,6 +302,18 @@ module hdl_top;
   end
 
   initial begin
+    int unsigned sim_timeout_ns;
+
+    sim_timeout_ns = 0;
+    void'($value$plusargs("SIM_TIMEOUT_NS=%d", sim_timeout_ns));
+
+    if (sim_timeout_ns > 0) begin
+      #(sim_timeout_ns);
+      `uvm_fatal("SIM_TIMEOUT", $sformatf("Simulation timeout after %0d ns", sim_timeout_ns))
+    end
+  end
+
+  initial begin
     int dump_waves;
     string fsdb_file;
 

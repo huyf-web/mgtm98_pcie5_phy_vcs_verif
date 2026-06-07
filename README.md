@@ -14,6 +14,13 @@ make regress
 make cov
 ```
 
+`make run` 默认传入 `+SIM_TIMEOUT_NS=200000`，避免 link-up 或数据序列卡住后仿真无限运行。可以通过 `sim_timeout` 调整，设置为 `0` 表示关闭：
+
+```sh
+make run tc=pcie_test seed=123 sim_timeout=1000000
+make run tc=pcie_test seed=123 sim_timeout=0
+```
+
 也可以进入 `tb/sim` 后执行同样的命令。
 
 ## 输出目录
