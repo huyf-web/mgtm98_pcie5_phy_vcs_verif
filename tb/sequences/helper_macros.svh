@@ -1,4 +1,4 @@
-`define SEND_RECV_TS() \
+`define SEND_RECV_TS \
 	task send_seq_item(ts_s tses [`NUM_OF_LANES]); \
 	  pipe_seq_item pipe_seq_item_h = pipe_seq_item::type_id::create("pipe_seq_item"); \
 	  pipe_seq_item_h.tses_sent = tses; \
@@ -12,4 +12,3 @@
 	  @(pipe_agent_config_h.detected_tses_e); \
 	  tses = pipe_agent_config_h.tses_received; \
 	endtask \
-
