@@ -1,7 +1,9 @@
-项目源：在下述的github里面是项目的核心代码，里面包含了IC设计的RTL以及一套简单的验证环境
-https://github.com/mgtm98/pcie5_phy
-
-用户指定的环境：
+整个项目的约束
+1. 在这个项目中产生的任何文档都采用中文
+2. 每次环境中有修改，请上传github仓库
+3. 用户指定的github仓库：
+在项目开发的时候，将要上传的github仓库是https://github.com/huyf-web/mgtm98_pcie5_phy_vcs_verif
+4. 用户指定的环境：
 整套环境通过vcs进行编译，通过verdi进行仿真，通过dve查看覆盖率。波形是fsdb格式
 用户的指令通过小写的makefile输入，用户需要的指令有
 make com：编译环境
@@ -10,11 +12,59 @@ make verdi：打开verdi
 make cov：打开合并好的覆盖率文件
 make regress：将所有的case回归一遍
 
-用户指定的github仓库：
-在项目开发的时候，将要上传的github仓库是https://github.com/huyf-web/mgtm98_pcie5_phy_vcs_verif
+5. 项目源：在下述的github里面是项目的核心代码，里面包含了IC设计的RTL以及一套简单的验证环境
+https://github.com/mgtm98/pcie5_phy
 
-目标：
+项目进展
+1. 在项目进展中，我会说明当前项目的进展，因为当前项目可能涉及到多个agent的工作，有时候一个会话窗口是新启动的，agent可能不知道当前的
+工作进展，因此用户会在这里说明当前的工作进展，agent在读取这份promt的时候只需要按照项目进展往后走就行，后续内容会涉及多个目标，会在
+项目进展里面描述哪些目标是已经完成的，哪些目标是需要完成的
+2. 目前项目中，目标一和目标二已经完成
+
+
+目标一：目标一是将github上的开源pcie代码库整理分析出文档doc，然后试探性的修改环境为vcs和verdi的仿真环境
 1. 在项目源，先阅读这份RTL，整理出一份清晰的架构文档，整理出一份功能描述文档，里面有简单的关于每份rtl的功能描述
 2. 在项目源，先阅读这份tb环境，整理出一份清晰的架构文档，整理出验证case文档
 3. 在项目源，将tb环境整理成用户指定的环境版本
-4. 完成这些操作以后将环境上传到用户指定的github仓库https://github.com/huyf-web/mgtm98_pcie5_phy_vcs_verif，版本是初版
+
+
+目标二：在本地的虚拟机上将整套仿真环境和case都跑通
+背景
+我本地有一个虚拟机，现在已经打开了，在这个虚拟机里面有vcs。虚拟机密码是2020。
+这个虚拟机输入ip addr得到的响应是
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 00:0c:29:67:fe:8c brd ff:ff:ff:ff:ff:ff
+3: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+    link/ether 52:54:00:b6:9d:08 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+       valid_lft forever preferred_lft forever
+4: virbr0-nic: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master virbr0 state DOWN group default qlen 1000
+    link/ether 52:54:00:b6:9d:08 brd ff:ff:ff:ff:ff:ff
+这个虚拟机输入id后得到的响应是
+uid=1000(ICer) gid=1000(ICer) 组=1000(ICer),18(dialout),1001(plugdev) 环境=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+
+1. 在虚拟机上使用本地的仿真环境，vcs和verdi进行仿真
+2. 尽量保留项目源中tb环境提供的用例，这些用例在从questa仿真环境修改为vcs仿真环境中可以做修改。
+3. 工作的最终交付目标是生成了用户指定的环境，仿真case全部能够pass，产生的fsdb文件用户能够打开
+
+目标三：将验证工作整理并且做汇报
+1. 最终输出一份完整的验证报告，这份报告要求里面有图，所以请选择合理的格式，结构如下，
+模块概述：简单描述模块
+验证架构：描述验证环境的结构和架构
+验证case：整理并且描述每一条case
+覆盖率分析：针对toggle，fsm，condition，等等进行覆盖率分析，不要求全部打满，要求对没有打到的覆盖率进行分析说明
+波形截取：每条case，针对case关注的点进行verdi波形的截取，截图放在里面
+
+目标四：继续完善验证工作
+1. 自己思考如何提升覆盖率，并且新增case，后续新增的case按照之前的流程跑通，并且加入到回归case里面
+2. 按照之前的流程，整理验证报告，多了几点要求，每一条case的波形截取，需要打开verdi，加载rc里面的关键信号，然后截图保存
+3. 覆盖率分析文件里面同样需要打开dve，针对显示的每一个覆盖率数据，截图保存
+4. 最终目标，尽可能将覆盖率提高到70%以上，可以的话提升到90%，实在无法提升，也可理解，请说明原因
+5. 完成后上传提交到github仓库
+
