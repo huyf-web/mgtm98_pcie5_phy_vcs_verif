@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="360" viewBox="0 0 1120 360">
+  <style>.bg{fill:#fff}.grid{stroke:#e2e8f0}.sig{font:14px monospace;fill:#0f172a}.line{stroke:#7c3aed;stroke-width:3;fill:none}.mark{stroke:#dc2626;stroke-width:2;stroke-dasharray:5 5}.note{font:13px sans-serif;fill:#334155}.title{font:20px sans-serif;font-weight:700}</style>
+  <rect class="bg" width="1120" height="360"/><text class="title" x="30" y="32">Case3 data_exchange 波形截取</text>
+  <line class="grid" x1="170" y1="80" x2="1060" y2="80"/><line class="grid" x1="170" y1="155" x2="1060" y2="155"/><line class="grid" x1="170" y1="230" x2="1060" y2="230"/>
+  <text class="sig" x="30" y="85">lp_state_req</text><path class="line" d="M170 105 H250 V75 H1060"/>
+  <text class="sig" x="30" y="160">lp_irdy</text><path class="line" d="M170 180 H1060"/><text class="note" x="830" y="172">未拉高</text>
+  <text class="sig" x="30" y="235">lp_valid</text><path class="line" d="M170 255 H1060"/><text class="note" x="830" y="248">全 0</text>
+  <line class="mark" x1="930" y1="55" x2="930" y2="285"/><text class="note" x="780" y="310">50.007us data_exchange 启动</text>
+  <text class="note" x="620" y="330">LPIF 未 ACTIVE，driver 丢弃队列 payload，避免误报协议错误</text>
+</svg>

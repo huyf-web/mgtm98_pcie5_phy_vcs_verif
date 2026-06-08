@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="360" viewBox="0 0 1120 360">
+  <style>.bg{fill:#fff}.grid{stroke:#e2e8f0}.sig{font:14px monospace;fill:#0f172a}.line{stroke:#2563eb;stroke-width:3;fill:none}.mark{stroke:#dc2626;stroke-width:2;stroke-dasharray:5 5}.note{font:13px sans-serif;fill:#334155}.title{font:20px sans-serif;font-weight:700}</style>
+  <rect class="bg" width="1120" height="360"/><text class="title" x="30" y="32">Case1 reset + link_up 波形截取</text>
+  <line class="grid" x1="160" y1="70" x2="1060" y2="70"/><line class="grid" x1="160" y1="135" x2="1060" y2="135"/><line class="grid" x1="160" y1="200" x2="1060" y2="200"/><line class="grid" x1="160" y1="265" x2="1060" y2="265"/>
+  <text class="sig" x="30" y="75">PIPE.Reset</text><path class="line" d="M160 95 H205 V60 H1060"/>
+  <text class="sig" x="30" y="140">lp_state_req</text><path class="line" d="M160 160 H250 V125 H1060"/><text class="note" x="260" y="118">ACTIVE</text>
+  <text class="sig" x="30" y="205">TxDetectRx</text><path class="line" d="M160 225 H420 V190 H480 V225 H545 V190 H605 V225 H1060"/>
+  <text class="sig" x="30" y="270">PowerDown</text><path class="line" d="M160 255 H575 V285 H1060"/><text class="note" x="180" y="250">P1</text><text class="note" x="590" y="305">P0</text>
+  <line class="mark" x1="250" y1="55" x2="250" y2="310"/><text class="note" x="232" y="330">7ns</text>
+  <line class="mark" x1="500" y1="55" x2="500" y2="310"/><text class="note" x="460" y="330">23ns receiver detected</text>
+  <line class="mark" x1="1010" y1="55" x2="1010" y2="310"/><text class="note" x="900" y="330">50.007us 结束</text>
+</svg>

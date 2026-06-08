@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430">
+  <style>
+    .bg{fill:#f8fafc}.axis{stroke:#334155;stroke-width:2}.bar1{fill:#2563eb}.bar2{fill:#0f766e}.bar3{fill:#f59e0b}.txt{font:15px sans-serif;fill:#0f172a}.small{font:13px sans-serif;fill:#334155}.title{font:22px sans-serif;font-weight:700;fill:#0f172a}
+  </style>
+  <rect class="bg" width="1000" height="430"/>
+  <text class="title" x="40" y="42">覆盖率关注点与当前达成情况</text>
+  <line class="axis" x1="120" y1="350" x2="900" y2="350"/>
+  <line class="axis" x1="120" y1="80" x2="120" y2="350"/>
+  <text class="small" x="65" y="95">充分</text>
+  <text class="small" x="65" y="220">部分</text>
+  <text class="small" x="65" y="350">待补</text>
+  <rect class="bar1" x="170" y="120" width="90" height="230"/>
+  <rect class="bar1" x="290" y="125" width="90" height="225"/>
+  <rect class="bar2" x="410" y="145" width="90" height="205"/>
+  <rect class="bar2" x="530" y="245" width="90" height="105"/>
+  <rect class="bar3" x="650" y="280" width="90" height="70"/>
+  <rect class="bar3" x="770" y="300" width="90" height="50"/>
+  <text class="small" x="168" y="375">复位</text>
+  <text class="small" x="285" y="375">Detect</text>
+  <text class="small" x="403" y="375">配置链路</text>
+  <text class="small" x="520" y="375">Recovery</text>
+  <text class="small" x="640" y="375">数据传输</text>
+  <text class="small" x="758" y="375">速率切换</text>
+  <text class="txt" x="155" y="105">已覆盖</text>
+  <text class="txt" x="398" y="130">主要路径</text>
+  <text class="txt" x="632" y="265">受限覆盖</text>
+  <text class="small" x="120" y="405">说明：VCS 已生成 line/cond/tgl/fsm/branch vdb；当前报告按回归命中路径分析覆盖缺口。</text>
+</svg>

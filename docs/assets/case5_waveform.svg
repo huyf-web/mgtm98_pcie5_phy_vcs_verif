@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="360" viewBox="0 0 1120 360">
+  <style>.bg{fill:#fff}.grid{stroke:#e2e8f0}.sig{font:14px monospace;fill:#0f172a}.line{stroke:#0891b2;stroke-width:3;fill:none}.mark{stroke:#dc2626;stroke-width:2;stroke-dasharray:5 5}.note{font:13px sans-serif;fill:#334155}.title{font:20px sans-serif;font-weight:700}</style>
+  <rect class="bg" width="1120" height="360"/><text class="title" x="30" y="32">Case5 speed_change_usp 波形截取</text>
+  <line class="grid" x1="170" y1="80" x2="1060" y2="80"/><line class="grid" x1="170" y1="155" x2="1060" y2="155"/><line class="grid" x1="170" y1="230" x2="1060" y2="230"/>
+  <text class="sig" x="30" y="85">lp_state_req</text><path class="line" d="M170 105 H250 V75 H1060"/><text class="note" x="260" y="70">ACTIVE 请求保持</text>
+  <text class="sig" x="30" y="160">PIPE.Rate</text><path class="line" d="M170 180 H1060"/><text class="note" x="820" y="172">未观测到有效切换</text>
+  <text class="sig" x="30" y="235">PCLKRate</text><path class="line" d="M170 255 H205 V235 H250 V215 H1060"/><text class="note" x="265" y="210">02 保持</text>
+  <line class="mark" x1="520" y1="55" x2="520" y2="285"/><text class="note" x="440" y="310">50.007us USP speed change</text>
+  <line class="mark" x1="1000" y1="55" x2="1000" y2="285"/><text class="note" x="880" y="330">150.007us watchdog 退出</text>
+</svg>

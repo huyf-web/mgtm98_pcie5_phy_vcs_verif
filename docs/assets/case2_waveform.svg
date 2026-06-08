@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="360" viewBox="0 0 1120 360">
+  <style>.bg{fill:#fff}.grid{stroke:#e2e8f0}.sig{font:14px monospace;fill:#0f172a}.line{stroke:#0f766e;stroke-width:3;fill:none}.mark{stroke:#dc2626;stroke-width:2;stroke-dasharray:5 5}.note{font:13px sans-serif;fill:#334155}.title{font:20px sans-serif;font-weight:700}</style>
+  <rect class="bg" width="1120" height="360"/><text class="title" x="30" y="32">Case2 enter_recovery 波形截取</text>
+  <line class="grid" x1="160" y1="80" x2="1060" y2="80"/><line class="grid" x1="160" y1="155" x2="1060" y2="155"/><line class="grid" x1="160" y1="230" x2="1060" y2="230"/>
+  <text class="sig" x="30" y="85">lp_state_req</text><path class="line" d="M160 105 H250 V75 H930 V45 H1060"/><text class="note" x="260" y="70">ACTIVE</text><text class="note" x="938" y="40">RETRAIN(b)</text>
+  <text class="sig" x="30" y="160">pl_state_sts</text><path class="line" d="M160 180 H1060"/><text class="note" x="180" y="198">RESET，未进入 ACTIVE</text>
+  <text class="sig" x="30" y="235">PowerDown</text><path class="line" d="M160 215 H575 V250 H1060"/><text class="note" x="590" y="270">P0 保持</text>
+  <line class="mark" x1="500" y1="55" x2="500" y2="285"/><text class="note" x="455" y="310">23ns receiver detected</text>
+  <line class="mark" x1="930" y1="55" x2="930" y2="285"/><text class="note" x="828" y="310">50.007us recovery 请求</text>
+  <line class="mark" x1="1030" y1="55" x2="1030" y2="285"/><text class="note" x="950" y="330">50.009us 结束</text>
+</svg>
