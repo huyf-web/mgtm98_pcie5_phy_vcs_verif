@@ -11,6 +11,7 @@ merge_cov ?= 0
 VCS       ?= /home/synopsys/vcs-mx/O-2018.09-1/bin/vcs
 VERDI     ?= /home/synopsys/verdi/Verdi_O-2018.09-SP2/bin/verdi
 DVE       ?= dve
+wave_rc   ?= pcie5_phy_key_signals.rc
 
 OUT_DIR   := output
 LOG_DIR   := $(OUT_DIR)/log
@@ -93,7 +94,7 @@ run: com
 
 verdi:
 	@if [ ! -f "$(FSDB)" ]; then echo "FSDB not found: $(FSDB). Run make run tc=$(tc) seed=$(seed) waves=1 first."; exit 1; fi
-	$(VERDI) -sv -f $(COMMON_FLIST) -ssf $(FSDB) &
+	$(VERDI) -sv -f $(COMMON_FLIST) -ssf $(FSDB) -sswr $(wave_rc) &
 
 cov:
 	@if [ ! -d "$(COV_DIR)/merged.vdb" ]; then echo "Merged coverage not found. Run make regress first."; exit 1; fi
@@ -136,6 +137,7 @@ list:
 	@echo "  data_exchange_vseq"
 	@echo "  speed_change_dsp_vseq"
 	@echo "  speed_change_usp_vseq"
+	@echo "  speed_change_eq_vseq"
 
 clean:
 	@rm -rf $(OUT_DIR)

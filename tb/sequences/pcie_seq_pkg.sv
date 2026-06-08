@@ -39,5 +39,6 @@ package pcie_seq_pkg;
   `include "data_exchange_vseq.svh"
   `include "speed_change_dsp_vseq.svh"
   `include "speed_change_usp_vseq.svh"
+  `include "speed_change_eq_vseq.svh"
 
 endpackage

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="300" viewBox="0 0 980 300">
+  <style>
+    text { font-family: Arial, "Microsoft YaHei", sans-serif; fill: #111827; }
+    .title { font-size: 20px; font-weight: 700; }
+    .label { font-size: 14px; font-weight: 700; }
+    .small { font-size: 12px; fill: #4b5563; }
+    .card { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1; rx: 8; }
+    .ok { fill: #ecfdf5; stroke: #10b981; }
+    .warn { fill: #fff7ed; stroke: #f97316; }
+    .bad { fill: #fef2f2; stroke: #ef4444; }
+    .bar-bg { fill: #e5e7eb; }
+    .bar { fill: #2563eb; }
+  </style>
+  <rect width="980" height="300" fill="#ffffff"/>
+  <text class="title" x="28" y="36">目标四覆盖率状态</text>
+  <text class="small" x="28" y="60">6 条回归已运行，VCS 监控 line/cond/tgl/fsm/branch；URG/DVE 合并库无法给出有效百分比。</text>
+
+  <rect class="card ok" x="28" y="88" width="285" height="100"/>
+  <text class="label" x="48" y="116">仿真回归</text>
+  <text class="small" x="48" y="140">6/6 case PASS</text>
+  <text class="small" x="48" y="164">全部 UVM_ERROR/UVM_FATAL=0</text>
+
+  <rect class="card warn" x="340" y="88" width="285" height="100"/>
+  <text class="label" x="360" y="116">覆盖率合并</text>
+  <text class="small" x="360" y="140">merged.vdb 可被 DVE 打开</text>
+  <text class="small" x="360" y="164">Score 表为空，无法量化百分比</text>
+
+  <rect class="card bad" x="652" y="88" width="285" height="100"/>
+  <text class="label" x="672" y="116">阻塞点</text>
+  <text class="small" x="672" y="140">URG 报 Design not yet loaded</text>
+  <text class="small" x="672" y="164">不能诚实宣称达到 70%/90%</text>
+
+  <text class="label" x="28" y="226">目标阈值</text>
+  <rect class="bar-bg" x="120" y="212" width="760" height="18" rx="9"/>
+  <rect class="bar" x="120" y="212" width="0" height="18" rx="9"/>
+  <line x1="652" y1="204" x2="652" y2="242" stroke="#f97316" stroke-width="2"/>
+  <line x1="804" y1="204" x2="804" y2="242" stroke="#ef4444" stroke-width="2"/>
+  <text class="small" x="632" y="260">70%</text>
+  <text class="small" x="784" y="260">90%</text>
+  <text class="small" x="120" y="260">当前：覆盖率数据不可量化，按 N/A 处理</text>
+</svg>

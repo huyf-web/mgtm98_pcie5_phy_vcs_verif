@@ -4,3 +4,4 @@ pcie_test 2 reset_vseq,link_up_vseq,enter_recovery_vseq
 pcie_test 3 reset_vseq,link_up_vseq,data_exchange_vseq
 pcie_test 4 reset_vseq,link_up_vseq,speed_change_dsp_vseq
 pcie_test 5 reset_vseq,link_up_vseq,speed_change_usp_vseq
+pcie_test 6 reset_vseq,link_up_vseq,speed_change_eq_vseq

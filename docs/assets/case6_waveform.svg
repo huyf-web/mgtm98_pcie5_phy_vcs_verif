@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="330" viewBox="0 0 980 330">
+  <style>
+    text { font-family: Arial, "Microsoft YaHei", sans-serif; fill: #1f2937; }
+    .title { font-size: 20px; font-weight: 700; }
+    .label { font-size: 14px; font-weight: 700; }
+    .small { font-size: 12px; fill: #4b5563; }
+    .axis { stroke: #6b7280; stroke-width: 1; }
+    .sig { stroke: #2563eb; stroke-width: 3; fill: none; }
+    .eq { stroke: #dc2626; stroke-width: 3; fill: none; }
+    .grid { stroke: #e5e7eb; stroke-width: 1; }
+    .box { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1; rx: 8; }
+    .note { fill: #fff7ed; stroke: #fb923c; stroke-width: 1; rx: 8; }
+  </style>
+  <rect x="0" y="0" width="980" height="330" fill="#ffffff"/>
+  <text class="title" x="28" y="34">Case6: reset + link_up + speed_change_eq_vseq</text>
+  <text class="small" x="28" y="58">数据来源：pcie_test_6.fsdb，fsdbreport 导出，仿真结束时间 150.007us，UVM_ERROR/UVM_FATAL=0</text>
+  <line class="grid" x1="170" y1="82" x2="930" y2="82"/>
+  <line class="grid" x1="170" y1="132" x2="930" y2="132"/>
+  <line class="grid" x1="170" y1="182" x2="930" y2="182"/>
+  <line class="grid" x1="170" y1="232" x2="930" y2="232"/>
+  <line class="axis" x1="170" y1="276" x2="930" y2="276"/>
+  <line class="axis" x1="170" y1="270" x2="170" y2="282"/>
+  <line class="axis" x1="425" y1="270" x2="425" y2="282"/>
+  <line class="axis" x1="930" y1="270" x2="930" y2="282"/>
+  <text class="small" x="160" y="302">0</text>
+  <text class="small" x="395" y="302">50.007us</text>
+  <text class="small" x="900" y="302">150.007us</text>
+
+  <text class="label" x="28" y="96">lp_state_req</text>
+  <polyline class="sig" points="170,112 180,112 180,90 930,90"/>
+  <text class="small" x="188" y="83">7ns 后请求 ACTIVE=1</text>
+
+  <text class="label" x="28" y="146">pl_linkup/sts</text>
+  <polyline class="sig" points="170,140 930,140"/>
+  <text class="small" x="188" y="130">pl_linkup=0，pl_state_sts=0，未进入 LPIF ACTIVE</text>
+
+  <text class="label" x="28" y="196">PCLKRate</text>
+  <polyline class="sig" points="170,212 178,212 178,190 930,190"/>
+  <text class="small" x="188" y="181">5ns 后保持 2'b10，未观察到后续速率切换</text>
+
+  <text class="label" x="28" y="246">EQ 参数</text>
+  <polyline class="eq" points="170,242 425,242 425,220 930,220"/>
+  <text class="small" x="438" y="214">50.007us：LocalFS/LocalLF 被 EQ sequence 驱动</text>
+
+  <rect class="note" x="540" y="72" width="390" height="80"/>
+  <text class="label" x="558" y="100">结论</text>
+  <text class="small" x="558" y="122">新增用例覆盖 equalization speed-change 入口。</text>
+  <text class="small" x="558" y="142">DUT 未返回期望的 Rate/TS 事件，100us watchdog 退出。</text>
+</svg>
