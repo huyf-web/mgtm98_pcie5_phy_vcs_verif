@@ -351,7 +351,39 @@ make run tc=pcie_test seed=10 vseq=reset_vseq,link_up_vseq,<your_vseq> verbosity
 make verdi tc=pcie_test seed=10
 ```
 
-## 12. 新增回归用例的方法
+## 12. 终端配色设置
+
+如果希望 Linux 终端显示为黑色背景、浅色文字、红色 `user@host` 提示符、蓝色路径和蓝色目录名，可以使用工程提供的终端主题脚本：
+
+```sh
+bash tools/ubuntu_terminal_theme.sh
+source ~/.bashrc
+```
+
+配置后，终端提示符格式类似：
+
+```sh
+user@host:~/workdir$
+```
+
+执行 `ls -l` 时，目录名会显示为蓝色，普通文件为浅色，整体效果接近项目参考图片中的 Ubuntu 终端风格。
+
+该脚本会修改当前 Linux 用户的 `~/.bashrc`，并使用如下标记包围配置块：
+
+```sh
+# >>> pcie5_phy_terminal_theme >>>
+# <<< pcie5_phy_terminal_theme <<<
+```
+
+如果需要取消该主题，可以打开 `~/.bashrc`，删除上述两行标记之间的内容，然后重新加载：
+
+```sh
+source ~/.bashrc
+```
+
+说明：黑色背景和浅色前景通过标准终端控制序列设置，大部分常见终端可以识别。如果当前终端模拟器禁用了颜色控制序列，需要在终端软件的 Profile/Preferences 中手动设置黑色背景。
+
+## 13. 新增回归用例的方法
 
 新增回归用例时，通常只需要修改：
 
@@ -384,9 +416,9 @@ make regress
 3. sequence 名称已经被 test 或 sequence factory 识别。
 4. `make list` 中的说明同步更新，避免使用者不知道新场景。
 
-## 13. 常见问题
+## 14. 常见问题
 
-### 13.1 `vcs: command not found` 或工具路径不存在
+### 14.1 `vcs: command not found` 或工具路径不存在
 
 说明默认 `VCS` 路径与当前机器不一致。可以临时覆盖：
 
@@ -396,7 +428,7 @@ make com VCS=/your/vcs/path/vcs
 
 也可以修改 `tb/sim/Makefile` 中的 `VCS` 默认值。
 
-### 13.2 License 不可用
+### 14.2 License 不可用
 
 当前 VCS 编译参数包含：
 
@@ -406,7 +438,7 @@ make com VCS=/your/vcs/path/vcs
 
 这表示没有 license 时 VCS 会等待 license。如果长时间卡住，需要检查 license server、环境变量和工具授权。
 
-### 13.3 仿真长时间不结束
+### 14.3 仿真长时间不结束
 
 默认 `sim_timeout=200000`，用于避免 link-up 或数据序列异常时无限运行。
 
@@ -418,7 +450,7 @@ make com VCS=/your/vcs/path/vcs
 make run tc=pcie_test seed=3 sim_timeout=1000000
 ```
 
-### 13.4 Verdi 打不开 FSDB
+### 14.4 Verdi 打不开 FSDB
 
 先检查文件是否存在：
 
@@ -434,7 +466,7 @@ make run tc=pcie_test seed=<seed> waves=1
 
 如果 FSDB 存在但 Verdi 无法打开，需要检查 `VERDI` 路径、图形显示环境和 FSDB 版本兼容性。
 
-### 13.5 `make cov` 提示没有 merged coverage
+### 14.5 `make cov` 提示没有 merged coverage
 
 `make cov` 只打开已经合并好的覆盖率数据库，不会自动跑回归或合并。请先执行：
 
@@ -442,7 +474,7 @@ make run tc=pcie_test seed=<seed> waves=1
 make regress merge_cov=1
 ```
 
-### 13.6 回归中某条 case 失败
+### 14.6 回归中某条 case 失败
 
 根据失败 seed 查看对应 log：
 
@@ -463,7 +495,7 @@ make run tc=pcie_test seed=<seed> vseq=<failed_vseq_list> waves=1 verbosity=UVM_
 make verdi tc=pcie_test seed=<seed>
 ```
 
-## 14. 交付物检查清单
+## 15. 交付物检查清单
 
 完成一次环境运行或验证更新后，建议检查以下内容：
 
