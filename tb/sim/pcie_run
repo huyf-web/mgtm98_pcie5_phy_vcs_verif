@@ -1,0 +1,25 @@
+make help
+make list
+make com
+make comp
+make run tc=pcie_test seed=1 vseq=reset_vseq,link_up_vseq
+make run tc=pcie_test seed=2 vseq=reset_vseq,link_up_vseq,enter_recovery_vseq
+make run tc=pcie_test seed=3 vseq=reset_vseq,link_up_vseq,data_exchange_vseq
+make run tc=pcie_test seed=4 vseq=reset_vseq,link_up_vseq,speed_change_dsp_vseq
+make run tc=pcie_test seed=5 vseq=reset_vseq,link_up_vseq,speed_change_usp_vseq
+make run tc=pcie_test seed=6 vseq=reset_vseq,link_up_vseq,speed_change_eq_vseq
+make run tc=pcie_test seed=1 vseq=reset_vseq,link_up_vseq waves=0
+make run tc=pcie_test seed=1 vseq=reset_vseq,link_up_vseq verbosity=UVM_HIGH
+make run tc=pcie_test seed=1 vseq=reset_vseq,link_up_vseq sim_timeout=1000000
+make run tc=pcie_test seed=1 vseq=reset_vseq,link_up_vseq sim_timeout=0
+make regress
+make regress merge_cov=1
+make verdi tc=pcie_test seed=1
+make verdi tc=pcie_test seed=2
+make verdi tc=pcie_test seed=3
+make verdi tc=pcie_test seed=4
+make verdi tc=pcie_test seed=5
+make verdi tc=pcie_test seed=6
+make cov
+make clean
+make distclean

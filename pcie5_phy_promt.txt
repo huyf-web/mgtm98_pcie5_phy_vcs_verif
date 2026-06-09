@@ -11,6 +11,8 @@ make run tc=xxx_test seed=123：运行vcs仿真，跑的case是xxx_test，仿真
 make verdi：打开verdi
 make cov：打开合并好的覆盖率文件
 make regress：将所有的case回归一遍
+5. 每开发完一个仿真的命令或者用例，都在sim路径下面的pcie_run文件里面将命令存入，总之用户可以在这个文件里面看到所有的仿真指令，每一条仿真
+指令是一行，用户拷贝这一行到终端执行即可进行一次仿真或者操作
 
 5. 项目源：在下述的github里面是项目的核心代码，里面包含了IC设计的RTL以及一套简单的验证环境
 https://github.com/mgtm98/pcie5_phy
@@ -67,4 +69,5 @@ uid=1000(ICer) gid=1000(ICer) 组=1000(ICer),18(dialout),1001(plugdev) 环境=un
 3. 覆盖率分析文件里面同样需要打开dve，针对显示的每一个覆盖率数据，截图保存
 4. 最终目标，尽可能将覆盖率提高到70%以上，可以的话提升到90%，实在无法提升，也可理解，请说明原因
 5. 完成后上传提交到github仓库
+
 
