@@ -2,12 +2,12 @@
 
 ## 总体结构
 
-验证环境是 UVM 验证平台，分为 HVL 和 HDL 两个顶层：
+验证环境是 UVM 验证平台，当前使用统一的 `tb` 顶层：
 
-- `tb/top/hvl_top.sv`：导入 UVM/test package，并调用 `run_test()`。
-- `tb/top/hdl_top.sv`：例化 LPIF/PIPE interface、BFM 模块和 `PCIe` DUT。
+- `tb/top/tb.sv`：定义 `module tb`，例化 LPIF/PIPE interface、BFM 模块和 `PCIe` DUT。
+- `tb.dut`：`PCIe` DUT 实例，Verdi 中可从 `/tb/dut/...` 展开 DUT 内部信号。
 
-`hdl_top` 同时负责把 BFM handle 放入 `uvm_config_db`，供 UVM test 获取；FSDB dump 通过 `+WAVES` 和 `+FSDB_FILE` 控制。
+`tb` 同时负责把 BFM handle 放入 `uvm_config_db`，调用 `run_test()`，并通过 `+WAVES` 和 `+FSDB_FILE` 控制 FSDB dump。VCS 编译时显式使用 `-top tb`，避免 Verdi 中出现多个分散顶层。
 
 ## Package 编译顺序
 
@@ -22,7 +22,7 @@ VCS filelist 按以下顺序编译 package 和顶层：
 7. `pcie_env_pkg`
 8. `pcie_seq_pkg`
 9. `pcie_test_pkg`
-10. HDL/HVL 顶层
+10. `tb` 顶层
 
 ## Agent
 

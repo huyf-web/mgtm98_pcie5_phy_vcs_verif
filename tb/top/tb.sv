@@ -1,4 +1,4 @@
-module hdl_top;
+module tb;
 
   `include "settings.svh"
   `include "uvm_macros.svh"
@@ -10,6 +10,7 @@ module hdl_top;
   import pipe_agent_pkg::*;
   import pcie_env_pkg::*;
   import pcie_seq_pkg::*;
+  import pcie_test_pkg::*;
 
   // clk and reset
   //
@@ -212,7 +213,7 @@ module hdl_top;
     .GEN4_PIPEWIDTH (`GEN4_PIPEWIDTH) ,	
     .GEN5_PIPEWIDTH (`GEN5_PIPEWIDTH) ,	
     .MAX_GEN (`MAX_GEN_DUT)
-  ) DUT (
+  ) dut (
   . CLK (clk),
   . lpreset                               (LPIF.reset),
   . phy_reset                             (PIPE.Reset),
@@ -298,7 +299,7 @@ module hdl_top;
   // end
 
   initial begin
-    forever #50000 `uvm_info("hdl_top", $sformatf("Time: %t", $time), UVM_NONE)
+    forever #50000 `uvm_info("tb", $sformatf("Time: %t", $time), UVM_NONE)
   end
 
   initial begin
@@ -322,13 +323,13 @@ module hdl_top;
     if (ltssm_debug) begin
       forever begin
         @(LPIF.pl_linkup or LPIF.pl_state_sts or LPIF.lp_state_req or
-          DUT.mainltssm.currentState or DUT.mainltssm.substateTx or DUT.mainltssm.substateRx or
-          DUT.mainltssm.finishTx or DUT.mainltssm.finishRx or DUT.mainltssm.gotoTx or DUT.mainltssm.gotoRx);
+          dut.mainltssm.currentState or dut.mainltssm.substateTx or dut.mainltssm.substateRx or
+          dut.mainltssm.finishTx or dut.mainltssm.finishRx or dut.mainltssm.gotoTx or dut.mainltssm.gotoRx);
         `uvm_info("LTSSM_DEBUG",
           $sformatf("lp_req=%0d pl_sts=%0d link=%0b state=%0d tx=%0d rx=%0d finishTx=%0b gotoTx=%0d finishRx=%0b gotoRx=%0d",
             LPIF.lp_state_req, LPIF.pl_state_sts, LPIF.pl_linkup,
-            DUT.mainltssm.currentState, DUT.mainltssm.substateTx, DUT.mainltssm.substateRx,
-            DUT.mainltssm.finishTx, DUT.mainltssm.gotoTx, DUT.mainltssm.finishRx, DUT.mainltssm.gotoRx),
+            dut.mainltssm.currentState, dut.mainltssm.substateTx, dut.mainltssm.substateRx,
+            dut.mainltssm.finishTx, dut.mainltssm.gotoTx, dut.mainltssm.finishRx, dut.mainltssm.gotoRx),
           UVM_NONE)
       end
     end
@@ -345,13 +346,17 @@ module hdl_top;
 
     if (dump_waves) begin
       $fsdbDumpfile(fsdb_file);
-      $fsdbDumpvars(0, hdl_top);
-      $fsdbDumpMDA(0, hdl_top);
+      $fsdbDumpvars(0, tb);
+      $fsdbDumpMDA(0, tb);
     end
   end
 
   initial begin
-    `uvm_info("hdl_top", $sformatf("DEVICETYPE (%b)", !`IS_ENV_UPSTREAM), UVM_NONE)
+    `uvm_info("tb", $sformatf("DEVICETYPE (%b)", !`IS_ENV_UPSTREAM), UVM_NONE)
   end
 
-endmodule: hdl_top
+  initial begin
+    run_test();
+  end
+
+endmodule: tb

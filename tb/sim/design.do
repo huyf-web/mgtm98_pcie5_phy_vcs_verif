@@ -1,45 +1,45 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate /hdl_top/PIPE/PCLK
-add wave -noupdate /hdl_top/PIPE/Reset
-add wave -noupdate /hdl_top/LPIF/pl_linkup
-add wave -noupdate /hdl_top/PIPE/PhyStatus
-add wave -noupdate /hdl_top/PIPE/TxDetectRxLoopback
-add wave -noupdate -radix binary /hdl_top/LPIF/lp_state_req
-add wave -noupdate /hdl_top/LPIF/pl_state_sts
-add wave -noupdate /hdl_top/PIPE/RxStatus
-add wave -noupdate /hdl_top/PIPE/PowerDown
-add wave -noupdate /hdl_top/LPIF/reset
-add wave -noupdate /hdl_top/PIPE/TxElecIdle
-add wave -noupdate /hdl_top/PIPE/RxData
-add wave -noupdate /hdl_top/PIPE/RxDataValid
-add wave -noupdate /hdl_top/PIPE/RxDataK
-add wave -noupdate /hdl_top/PIPE/TxData
-add wave -noupdate /hdl_top/PIPE/TxDataValid
-add wave -noupdate /hdl_top/PIPE/TxDataK
-add wave -noupdate /hdl_top/DUT/mainltssm/linkNumberInTx
-add wave -noupdate /hdl_top/DUT/mainltssm/linkNumberInRx
-add wave -noupdate /hdl_top/DUT/mainltssm/writeLinkNumberTx
-add wave -noupdate /hdl_top/DUT/mainltssm/writeLinkNumberRx
-add wave -noupdate /hdl_top/DUT/mainltssm/finishTx
-add wave -noupdate /hdl_top/DUT/mainltssm/finishRx
-add wave -noupdate /hdl_top/DUT/mainltssm/gotoTx
-add wave -noupdate /hdl_top/DUT/mainltssm/gotoRx
-add wave -noupdate /hdl_top/DUT/mainltssm/linkNumberOutTx
-add wave -noupdate /hdl_top/DUT/mainltssm/linkNumberOutRx
-add wave -noupdate /hdl_top/DUT/mainltssm/substateTx
-add wave -noupdate /hdl_top/DUT/mainltssm/substateRx
-add wave -noupdate /hdl_top/DUT/rx/rxltssm/masterRxLTSSM/substate
-add wave -noupdate /hdl_top/DUT/rx/rxltssm/masterRxLTSSM/lastState
-add wave -noupdate /hdl_top/DUT/rx/rxltssm/masterRxLTSSM/currentState
-add wave -noupdate /hdl_top/DUT/rx/rxltssm/orderedSets
-add wave -noupdate /hdl_top/DUT/rx/rxltssm/countUp
-add wave -noupdate /hdl_top/DUT/rx/rxltssm/resetCounters
-add wave -noupdate /hdl_top/DUT/rx/rxltssm/countersValues
-add wave -noupdate -radix unsigned {/hdl_top/DUT/rx/rxltssm/genblk1[0]/counter/count}
-add wave -noupdate /hdl_top/DUT/DEVICETYPE
-add wave -noupdate /hdl_top/DUT/rx/DEVICETYPE
-add wave -noupdate /hdl_top/DUT/TX/DEVICETYPE
+add wave -noupdate /tb/PIPE/PCLK
+add wave -noupdate /tb/PIPE/Reset
+add wave -noupdate /tb/LPIF/pl_linkup
+add wave -noupdate /tb/PIPE/PhyStatus
+add wave -noupdate /tb/PIPE/TxDetectRxLoopback
+add wave -noupdate -radix binary /tb/LPIF/lp_state_req
+add wave -noupdate /tb/LPIF/pl_state_sts
+add wave -noupdate /tb/PIPE/RxStatus
+add wave -noupdate /tb/PIPE/PowerDown
+add wave -noupdate /tb/LPIF/reset
+add wave -noupdate /tb/PIPE/TxElecIdle
+add wave -noupdate /tb/PIPE/RxData
+add wave -noupdate /tb/PIPE/RxDataValid
+add wave -noupdate /tb/PIPE/RxDataK
+add wave -noupdate /tb/PIPE/TxData
+add wave -noupdate /tb/PIPE/TxDataValid
+add wave -noupdate /tb/PIPE/TxDataK
+add wave -noupdate /tb/dut/mainltssm/linkNumberInTx
+add wave -noupdate /tb/dut/mainltssm/linkNumberInRx
+add wave -noupdate /tb/dut/mainltssm/writeLinkNumberTx
+add wave -noupdate /tb/dut/mainltssm/writeLinkNumberRx
+add wave -noupdate /tb/dut/mainltssm/finishTx
+add wave -noupdate /tb/dut/mainltssm/finishRx
+add wave -noupdate /tb/dut/mainltssm/gotoTx
+add wave -noupdate /tb/dut/mainltssm/gotoRx
+add wave -noupdate /tb/dut/mainltssm/linkNumberOutTx
+add wave -noupdate /tb/dut/mainltssm/linkNumberOutRx
+add wave -noupdate /tb/dut/mainltssm/substateTx
+add wave -noupdate /tb/dut/mainltssm/substateRx
+add wave -noupdate /tb/dut/rx/rxltssm/masterRxLTSSM/substate
+add wave -noupdate /tb/dut/rx/rxltssm/masterRxLTSSM/lastState
+add wave -noupdate /tb/dut/rx/rxltssm/masterRxLTSSM/currentState
+add wave -noupdate /tb/dut/rx/rxltssm/orderedSets
+add wave -noupdate /tb/dut/rx/rxltssm/countUp
+add wave -noupdate /tb/dut/rx/rxltssm/resetCounters
+add wave -noupdate /tb/dut/rx/rxltssm/countersValues
+add wave -noupdate -radix unsigned {/tb/dut/rx/rxltssm/genblk1[0]/counter/count}
+add wave -noupdate /tb/dut/DEVICETYPE
+add wave -noupdate /tb/dut/rx/DEVICETYPE
+add wave -noupdate /tb/dut/TX/DEVICETYPE
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {34357 ns} 0}
 quietly wave cursor active 1

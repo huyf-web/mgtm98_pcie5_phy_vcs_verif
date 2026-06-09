@@ -8,8 +8,7 @@ NUM_OF_LANES ?= 16
 LPIF_BUS_WIDTH ?= 512
 
 ################################## Files to be compiled ##########################################
-TOP_FILES			 		+= $(call COMPILE,hdl_top.sv)
-TOP_FILES			 		+= $(call COMPILE,hvl_top.sv)
+TOP_FILES			 		+= $(call COMPILE,tb.sv)
 RTL_FILES         			+= $(call COMPILE,../../rtl/*.v)
 ##################################################################################################
 

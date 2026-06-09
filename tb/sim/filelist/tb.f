@@ -11,5 +11,4 @@
 ../env/pcie_env_pkg.sv
 ../sequences/pcie_seq_pkg.sv
 ../test/pcie_test_pkg.sv
-../top/hdl_top.sv
-../top/hvl_top.sv
+../top/tb.sv

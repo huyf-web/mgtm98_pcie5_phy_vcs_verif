@@ -14,7 +14,7 @@
 
 ## 2. 模块概述
 
-当前 DUT 顶层为 `PCIe`，由 `tb/top/hdl_top.sv` 例化并连接 LPIF、PIPE 两侧接口。设计主体围绕 PCIe PHY 链路训练、PIPE 控制、LPIF 状态请求和不同 generation 的数据路径展开。
+当前 DUT 顶层为 `PCIe`，由 `tb/top/tb.sv` 在 `tb.dut` 下例化并连接 LPIF、PIPE 两侧接口。设计主体围绕 PCIe PHY 链路训练、PIPE 控制、LPIF 状态请求和不同 generation 的数据路径展开。
 
 主要模块职责如下：
 
@@ -34,8 +34,7 @@
 
 验证环境采用 UVM 结构，分为 HVL 和 HDL 两个顶层：
 
-- `tb/top/hvl_top.sv`：导入 UVM package，调用 `run_test()`。
-- `tb/top/hdl_top.sv`：例化 DUT、LPIF/PIPE interface、driver BFM、monitor BFM，并配置 FSDB dump。
+- `tb/top/tb.sv`：定义统一 `tb` 顶层，例化 `tb.dut`、LPIF/PIPE interface、driver BFM、monitor BFM，调用 `run_test()`，并配置 FSDB dump。
 - `pcie_test`：读取 `+VSEQ` plusarg，按逗号分隔的 sequence 列表顺序执行。
 - `pcie_env`：集成 LPIF agent、PIPE agent、scoreboard 和 coverage monitor。
 - LPIF/PIPE agent：包含 sequencer、driver、monitor、coverage monitor 和 BFM。

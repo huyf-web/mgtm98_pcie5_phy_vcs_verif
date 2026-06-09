@@ -30,6 +30,7 @@ TB_FLIST     := filelist/tb.f
 CASE_LIST    := filelist/regress.list
 
 VCS_OPTS += -full64 -sverilog -timescale=1ns/1ps -ntb_opts uvm-1.2
+VCS_OPTS += -top tb
 VCS_OPTS += -debug_access+all -kdb -lca
 VCS_OPTS += -cm line+cond+tgl+fsm+branch
 VCS_OPTS += +vcs+lic+wait
@@ -94,7 +95,7 @@ run: com
 
 verdi:
 	@if [ ! -f "$(FSDB)" ]; then echo "FSDB not found: $(FSDB). Run make run tc=$(tc) seed=$(seed) waves=1 first."; exit 1; fi
-	$(VERDI) -sv -f $(COMMON_FLIST) -ssf $(FSDB) -sswr $(wave_rc) &
+	$(VERDI) -sv -top tb -f $(COMMON_FLIST) -ssf $(FSDB) -sswr $(wave_rc) &
 
 cov:
 	@if [ ! -d "$(COV_DIR)/merged.vdb" ]; then echo "Merged coverage not found. Run make regress first."; exit 1; fi

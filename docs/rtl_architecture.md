@@ -8,7 +8,7 @@ UVM 环境使用的 RTL 顶层是 `rtl/PCIE.v` 中的 `PCIe` 模块。该顶层�
 - `RX`：接收通路和接收侧 LTSSM 集成模块。它消费 PIPE RX 数据和状态，完成 ordered set/packet 解码，更新 lane、rate、link 信息，并驱动 LPIF 接收侧输出。
 - `TOP_MODULE`：发送通路和 TX 侧 LTSSM 集成模块。它消费 LPIF 发送数据和控制信息，生成 PIPE TX 数据和控制信号，并向主 LTSSM 汇报训练进度。
 
-`PCIe` 的外部接口可以分为 PIPE、LPIF、均衡控制、状态控制四组信号。验证环境中的 `hdl_top.sv` 负责把 UVM LPIF/PIPE interface 映射到 `PCIe` 端口。
+`PCIe` 的外部接口可以分为 PIPE、LPIF、均衡控制、状态控制四组信号。验证环境中的 `tb/top/tb.sv` 定义统一 `tb` 顶层，并在 `tb.dut` 下例化 `PCIe`，负责把 UVM LPIF/PIPE interface 映射到 `PCIe` 端口。
 
 ## 控制流
 
@@ -34,7 +34,8 @@ UVM 环境使用的 RTL 顶层是 `rtl/PCIE.v` 中的 `PCIe` 模块。该顶层�
 ## 验证环境接入信息
 
 - DUT 顶层：`PCIe`
-- TB 顶层模块：`hdl_top`、`hvl_top`
+- TB 顶层模块：`tb`
+- Verdi DUT 路径：`/tb/dut`
 - PIPE interface：`tb/agents/pipe_agent/pipe_if.sv`
 - LPIF interface：`tb/agents/lpif_agent/lpif_if.sv`
 - 默认 VCS 编译入口：`tb/sim/filelist/common.f`

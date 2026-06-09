@@ -1,19 +1,19 @@
 # PCIe5 PHY Verdi key signal list for waveform review.
 # Use with: make verdi tc=pcie_test seed=<seed>
-/hdl_top/LPIF/pl_linkup
-/hdl_top/LPIF/lp_state_req
-/hdl_top/LPIF/pl_state_sts
-/hdl_top/LPIF/lp_irdy
-/hdl_top/LPIF/lp_valid
-/hdl_top/PIPE/Reset
-/hdl_top/PIPE/TxDetectRxLoopback
-/hdl_top/PIPE/PowerDown
-/hdl_top/PIPE/Rate
-/hdl_top/PIPE/PCLKRate
-/hdl_top/PIPE/LocalFS
-/hdl_top/PIPE/LocalLF
-/hdl_top/PIPE/LocalPresetIndex
-/hdl_top/PIPE/RxEqEval
-/hdl_top/PIPE/TxDeemph
-/hdl_top/PIPE/LinkEvaluationFeedbackDirectionChange
-/hdl_top/PIPE/LocalTxCoeffcientsValid
+/tb/LPIF/pl_linkup
+/tb/LPIF/lp_state_req
+/tb/LPIF/pl_state_sts
+/tb/LPIF/lp_irdy
+/tb/LPIF/lp_valid
+/tb/PIPE/Reset
+/tb/PIPE/TxDetectRxLoopback
+/tb/PIPE/PowerDown
+/tb/PIPE/Rate
+/tb/PIPE/PCLKRate
+/tb/PIPE/LocalFS
+/tb/PIPE/LocalLF
+/tb/PIPE/LocalPresetIndex
+/tb/PIPE/RxEqEval
+/tb/PIPE/TxDeemph
+/tb/PIPE/LinkEvaluationFeedbackDirectionChange
+/tb/PIPE/LocalTxCoeffcientsValid
